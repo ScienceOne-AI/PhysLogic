@@ -35,40 +35,6 @@ PhysLogic 从两个角度评测物理问题求解：最终答案正确性，以�
 - `O`: Causal Connection，衡量模型是否保持预期推导顺序；
 - `P`: Inferential Progress，衡量推理路径是否持续向前推进。
 
-## 数据集
-
-数据集单独托管在 Hugging Face。数据来源于 2025 年之后发布在 arXiv 上的物理论文，并已经过脱敏处理，适合用于公开 benchmark 评测。
-
-PhysLogic 共包含 864 道题：
-
-| 题型 | 数量 | 是否计算最终答案正确率 |
-| --- | ---: | --- |
-| `choice` | 216 | 是 |
-| `comp_n` | 216 | 是 |
-| `comp_e` | 216 | 否 |
-| `proof` | 216 | 否 |
-
-| 难度 | 数量 |
-| --- | ---: |
-| Highschool | 216 |
-| Undergraduate | 216 |
-| Master's student | 216 |
-| PhD student | 216 |
-
-| 缩写 | 子领域 | 数量 |
-| --- | --- | ---: |
-| `astro-ph` | 天体物理 | 96 |
-| `cond-mat` | 凝聚态物理 | 96 |
-| `gr-qc` | 广义相对论与量子宇宙学 | 96 |
-| `hep` | 高能物理 | 96 |
-| `math-ph` | 数学物理 | 96 |
-| `nlin` | 非线性科学 | 96 |
-| `nucl` | 原子核理论 | 96 |
-| `physics` | 物理学综合 | 96 |
-| `quant-ph` | 量子物理 | 96 |
-
-每个“子领域 x 难度 x 题型”的组合中包含 6 道题。
-
 ## 安装
 
 建议使用 Python 3.10+。
@@ -177,17 +143,3 @@ src/prompt/LLM_judge.md      comp_n 非数值可判定场景下的可选 LLM jud
 ```
 
 `--judge_model_id` 只在 `comp_n` 的答案无法通过数值抽取直接判断、需要 LLM 做文本判分时使用。
-
-## 数据字段
-
-Hugging Face 数据集包含：
-
-- `uid`
-- `question`
-- `answer`
-- `final_answer`
-- `logical_nexuses`
-- `logical_nexus_weights`
-- `question_type`
-- `difficulty`
-- `subdomain`

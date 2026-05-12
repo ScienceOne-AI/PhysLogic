@@ -49,42 +49,6 @@ metrics:
   order;
 - `P`: Inferential Progress, measuring forward movement in the reasoning path.
 
-## Dataset
-
-The dataset is hosted separately on Hugging Face. It is constructed from physics
-papers on arXiv published after 2025 and has been anonymized for public
-benchmark use.
-
-PhysLogic contains 864 examples:
-
-| Type | Count | Final-Answer Accuracy |
-| --- | ---: | --- |
-| `choice` | 216 | Yes |
-| `comp_n` | 216 | Yes |
-| `comp_e` | 216 | No |
-| `proof` | 216 | No |
-
-| Difficulty | Count |
-| --- | ---: |
-| Highschool | 216 |
-| Undergraduate | 216 |
-| Master's student | 216 |
-| PhD student | 216 |
-
-| Abbrev. | Subdomain | Count |
-| --- | --- | ---: |
-| `astro-ph` | Astrophysics | 96 |
-| `cond-mat` | Condensed Matter | 96 |
-| `gr-qc` | General Relativity and Quantum Cosmology | 96 |
-| `hep` | High Energy Physics | 96 |
-| `math-ph` | Mathematical Physics | 96 |
-| `nlin` | Nonlinear Sciences | 96 |
-| `nucl` | Nuclear Theory | 96 |
-| `physics` | Physics | 96 |
-| `quant-ph` | Quantum Physics | 96 |
-
-Each subdomain x difficulty x question-type cell contains 6 examples.
-
 ## Installation
 
 Use Python 3.10+.
@@ -197,17 +161,3 @@ src/prompt/LLM_judge.md      Optional LLM judge prompt for non-numeric comp_n ca
 
 `--judge_model_id` is only needed when a `comp_n` answer cannot be judged by
 numeric extraction and requires an LLM textual judgement.
-
-## Dataset Fields
-
-The Hugging Face dataset contains:
-
-- `uid`
-- `question`
-- `answer`
-- `final_answer`
-- `logical_nexuses`
-- `logical_nexus_weights`
-- `question_type`
-- `difficulty`
-- `subdomain`
