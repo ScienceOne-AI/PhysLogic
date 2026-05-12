@@ -1,0 +1,18 @@
+# Core runtime
+numpy>=1.24
+scikit-learn>=1.2
+
+# Sentence encoder used for F/O/P logicality metrics
+sentence-transformers>=2.2.2
+
+# Hugging Face dataset loading
+datasets>=2.16.0,<3.0.0
+pyarrow>=15.0.0,<16.0.0
+
+# OpenAI-compatible Chat Completions API client
+openai>=1.38.0
+python-dotenv>=1.0.1
+
+# Note: sentence-transformers requires PyTorch. Install the appropriate
+# CPU/CUDA build for your environment:
+# https://pytorch.org/get-started/locally/
