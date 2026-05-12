@@ -20,6 +20,8 @@ accuracy and the logicality of model reasoning processes.
 This repository contains the evaluation code. The benchmark data are hosted on
 Hugging Face and loaded at runtime.
 
+🎉 This work has been accepted to ICML 2026.
+
 ## Highlights
 
 - **Process-aware evaluation**: PhysLogic evaluates not only whether a model
