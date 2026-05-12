@@ -2,6 +2,8 @@
 
 **English** | [简体中文](README_zh.md)
 
+[Code](https://github.com/ScienceOne-AI/PhysLogic) | [Dataset](https://huggingface.co/datasets/ScienceOne-AI/PhysLogic)
+
 PhysLogic is a physics reasoning benchmark for evaluating both final-answer
 accuracy and the logicality of model reasoning processes.
 

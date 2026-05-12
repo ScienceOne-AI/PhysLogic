@@ -2,6 +2,8 @@
 
 [English](README.md) | **简体中文**
 
+[代码](https://github.com/ScienceOne-AI/PhysLogic) | [数据集](https://huggingface.co/datasets/ScienceOne-AI/PhysLogic)
+
 PhysLogic 是一个面向物理推理的 benchmark，用于同时评测模型的最终答案正确性和推理过程的逻辑性。
 
 本仓库只包含评测代码。benchmark 数据托管在 Hugging Face，并在运行时加载。

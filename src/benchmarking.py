@@ -10,7 +10,7 @@ from model_client import OpenAICompatibleClient
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_HF_DATASET = "<HF_DATASET_REPO_ID>"
+DEFAULT_HF_DATASET = "ScienceOne-AI/PhysLogic"
 DEFAULT_HF_CONFIG = "default"
 DEFAULT_HF_SPLIT = "test"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "results"
@@ -46,11 +46,6 @@ def validate_dataset(data: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def load_physlogic_dataset() -> list[dict[str, Any]]:
-    if DEFAULT_HF_DATASET == "<HF_DATASET_REPO_ID>":
-        raise ValueError(
-            "The default HF dataset id is still a placeholder. "
-            "Replace DEFAULT_HF_DATASET with the released Hugging Face dataset id."
-        )
     try:
         from datasets import load_dataset
     except ModuleNotFoundError as exc:
