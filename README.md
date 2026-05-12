@@ -9,8 +9,8 @@
   <a href="https://github.com/ScienceOne-AI/PhysLogic">
     <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">
   </a>
-  <a href="https://creativecommons.org/licenses/by-nc/4.0/">
-    <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey?style=for-the-badge" alt="License: CC BY-NC 4.0">
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-Apache--2.0-lightgrey?style=for-the-badge" alt="License: Apache-2.0">
   </a>
 </p>
 
