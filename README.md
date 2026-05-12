@@ -2,7 +2,17 @@
 
 **English** | [简体中文](README_zh.md)
 
-[Code](https://github.com/ScienceOne-AI/PhysLogic) | [Dataset](https://huggingface.co/datasets/ScienceOne-AI/PhysLogic)
+<p align="center">
+  <a href="https://huggingface.co/datasets/ScienceOne-AI/PhysLogic">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow?style=for-the-badge" alt="Hugging Face Dataset">
+  </a>
+  <a href="https://github.com/ScienceOne-AI/PhysLogic">
+    <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">
+  </a>
+  <a href="https://creativecommons.org/licenses/by-nc/4.0/">
+    <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey?style=for-the-badge" alt="License: CC BY-NC 4.0">
+  </a>
+</p>
 
 PhysLogic is a physics reasoning benchmark for evaluating both final-answer
 accuracy and the logicality of model reasoning processes.

@@ -2,7 +2,17 @@
 
 [English](README.md) | **简体中文**
 
-[代码](https://github.com/ScienceOne-AI/PhysLogic) | [数据集](https://huggingface.co/datasets/ScienceOne-AI/PhysLogic)
+<p align="center">
+  <a href="https://huggingface.co/datasets/ScienceOne-AI/PhysLogic">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow?style=for-the-badge" alt="Hugging Face Dataset">
+  </a>
+  <a href="https://github.com/ScienceOne-AI/PhysLogic">
+    <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">
+  </a>
+  <a href="https://creativecommons.org/licenses/by-nc/4.0/">
+    <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey?style=for-the-badge" alt="License: CC BY-NC 4.0">
+  </a>
+</p>
 
 PhysLogic 是一个面向物理推理的 benchmark，用于同时评测模型的最终答案正确性和推理过程的逻辑性。
 
