@@ -9,6 +9,9 @@
   <a href="https://github.com/ScienceOne-AI/PhysLogic">
     <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">
   </a>
+  <a href="https://arxiv.org/pdf/2605.17104">
+    <img src="https://img.shields.io/badge/arXiv-2605.17104-b31b1b?style=for-the-badge&logo=arxiv" alt="arXiv:2605.17104">
+  </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-Apache--2.0-lightgrey?style=for-the-badge" alt="License: Apache-2.0">
   </a>
@@ -16,6 +19,8 @@
 
 PhysLogic is a physics reasoning benchmark for evaluating both final-answer
 accuracy and the logicality of model reasoning processes.
+It accompanies the paper *Scientific Logicality Enriched Methodology for LLM
+Reasoning: A Practice in Physics*.
 
 This repository contains the evaluation code. The benchmark data are hosted on
 Hugging Face and loaded at runtime.

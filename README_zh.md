@@ -9,12 +9,16 @@
   <a href="https://github.com/ScienceOne-AI/PhysLogic">
     <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">
   </a>
+  <a href="https://arxiv.org/pdf/2605.17104">
+    <img src="https://img.shields.io/badge/arXiv-2605.17104-b31b1b?style=for-the-badge&logo=arxiv" alt="arXiv:2605.17104">
+  </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-Apache--2.0-lightgrey?style=for-the-badge" alt="License: Apache-2.0">
   </a>
 </p>
 
-PhysLogic 是一个面向物理推理的 benchmark，用于同时评测模型的最终答案正确性和推理过程的逻辑性。
+PhysLogic 是一个面向物理推理的 benchmark，用于同时评测模型的最终答案正确性和推理过程的逻辑性。本项目对应论文
+*Scientific Logicality Enriched Methodology for LLM Reasoning: A Practice in Physics*。
 
 本仓库只包含评测代码。benchmark 数据托管在 Hugging Face，并在运行时加载。
 
