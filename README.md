@@ -3,14 +3,14 @@
 **English** | [简体中文](README_zh.md)
 
 <p align="center">
+  <a href="https://arxiv.org/pdf/2605.17104">
+    <img src="https://img.shields.io/badge/arXiv-2605.17104-b31b1b?style=for-the-badge&logo=arxiv" alt="arXiv:2605.17104">
+  </a>
   <a href="https://huggingface.co/datasets/ScienceOne-AI/PhysLogic">
     <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow?style=for-the-badge" alt="Hugging Face Dataset">
   </a>
   <a href="https://github.com/ScienceOne-AI/PhysLogic">
     <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">
-  </a>
-  <a href="https://arxiv.org/pdf/2605.17104">
-    <img src="https://img.shields.io/badge/arXiv-2605.17104-b31b1b?style=for-the-badge&logo=arxiv" alt="arXiv:2605.17104">
   </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-Apache--2.0-lightgrey?style=for-the-badge" alt="License: Apache-2.0">
