@@ -119,13 +119,26 @@ def aggregate_results(results_dir: Path) -> dict[str, Any]:
             add_row(per_type[qtype], row)
             add_row(overall, row)
 
+    per_type_stats = {
+        qtype: finalize_bucket(bucket)
+        for qtype, bucket in sorted(per_type.items())
+    }
+    overall_stats = finalize_bucket(overall)
+    accuracy_values = [
+        stats["accuracy"]
+        for stats in per_type_stats.values()
+        if stats["accuracy"] is not None
+    ]
+    overall_stats["accuracy"] = (
+        sum(accuracy_values) / len(accuracy_values)
+        if accuracy_values
+        else None
+    )
+
     summary = {
         "results_dir": str(results_dir),
-        "overall": finalize_bucket(overall),
-        "per_type": {
-            qtype: finalize_bucket(bucket)
-            for qtype, bucket in sorted(per_type.items())
-        },
+        "overall": overall_stats,
+        "per_type": per_type_stats,
     }
     return summary
 

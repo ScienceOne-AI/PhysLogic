@@ -3,6 +3,9 @@ from pathlib import Path
 from typing import Any
 
 
+NUMBER_PATTERN = r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)"
+
+
 def extract_from_boxed(answer: str | None) -> str | None:
     """Extract the final content from the last LaTeX \\boxed{...} block."""
     if answer is None:
@@ -24,7 +27,12 @@ def extract_from_boxed(answer: str | None) -> str | None:
 
 
 def scientific_notation_to_float(text: str) -> float | None:
-    pattern = r"(-?\d+(?:\.\d+)?)\s*\\times\s*10\^\{(-?\d+)\}"
+    pattern = (
+        f"({NUMBER_PATTERN})"
+        r"\s*(?:\\+times|\\+cdot|×|\*)\s*10\s*\^\s*\{?\s*"
+        r"([-+]?\d+)"
+        r"\s*\}?"
+    )
     match = re.search(pattern, text.strip())
     if not match:
         return None
@@ -35,8 +43,40 @@ def scientific_notation_to_float(text: str) -> float | None:
     return coefficient * (10**exponent)
 
 
+def power_of_ten_to_float(text: str) -> float | None:
+    pattern = r"(?<![\d.])10\s*\^\s*\{?\s*([-+]?\d+)\s*\}?"
+    match = re.search(pattern, text.strip())
+    if not match:
+        return None
+    exponent = int(match.group(1))
+    if exponent > 308 or exponent < -308:
+        return None
+    return 10**exponent
+
+
+def fraction_to_float(text: str) -> float | None:
+    latex_pattern = (
+        r"\\+(?:dfrac|tfrac|frac)\s*\{\s*"
+        f"({NUMBER_PATTERN})"
+        r"\s*\}\s*\{\s*"
+        f"({NUMBER_PATTERN})"
+        r"\s*\}"
+    )
+    plain_pattern = f"({NUMBER_PATTERN})" r"\s*/\s*" f"({NUMBER_PATTERN})"
+    for pattern in (latex_pattern, plain_pattern):
+        match = re.search(pattern, text.strip())
+        if not match:
+            continue
+        numerator = float(match.group(1))
+        denominator = float(match.group(2))
+        if denominator == 0:
+            return None
+        return numerator / denominator
+    return None
+
+
 def extract_number(text: str) -> float | None:
-    pattern = r"-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?"
+    pattern = rf"{NUMBER_PATTERN}(?:[eE][+-]?\d+)?"
     match = re.search(pattern, text.strip())
     if not match:
         return None
@@ -52,21 +92,37 @@ def get_final_math_answer(content: str | None) -> float | None:
     value = scientific_notation_to_float(content)
     if value is not None:
         return value
+    value = power_of_ten_to_float(content)
+    if value is not None:
+        return value
+    value = fraction_to_float(content)
+    if value is not None:
+        return value
     return extract_number(content)
+
+
+def extract_choice_label(text: str | None) -> str | None:
+    if text is None:
+        return None
+    match = re.search(r"\b([ABCD])\b", text.strip())
+    if match:
+        return match.group(1)
+    match = re.search(r"[ABCD]", text.strip())
+    return match.group(0) if match else None
 
 
 def score_choice_answer(gold_answer: str, prediction: str | None) -> dict[str, Any]:
     extracted = extract_from_boxed(prediction)
-    choice = None
-    if extracted:
-        match = re.search(r"[ABCD]", extracted)
-        choice = match.group(0) if match else None
+    choice = extract_choice_label(extracted)
+    gold_extracted = extract_from_boxed(gold_answer) or gold_answer
+    gold_choice = extract_choice_label(gold_extracted)
     return {
         "answer_gt": gold_answer,
         "answer_pred": prediction,
         "answer_pred_extracted": extracted,
+        "gold_choice": gold_choice,
         "extracted_choice": choice,
-        "correct": 1 if choice == gold_answer else 0,
+        "correct": 1 if choice is not None and choice == gold_choice else 0,
         "judge_method": "choice_exact",
     }
 
@@ -90,7 +146,7 @@ def score_numeric_answer_by_value(gold_answer: str, prediction: str | None) -> d
     if gt_num == 0:
         correct = int(abs(pred_num) < 1e-3)
     else:
-        correct = int(abs(gt_num - pred_num) / abs(gt_num) <= 0.05)
+        correct = int(abs(gt_num - pred_num) <= 0.05 * abs(gt_num) + 1e-12)
 
     return {
         "answer_gt": gold_answer,
@@ -141,12 +197,15 @@ def score_numeric_or_text_answer(
         concurrency=1,
     )[0]
     answer = response.get("answer") or ""
+    verdict_match = re.search(r"\b([AB])\b", answer.strip().upper())
+    verdict = verdict_match.group(1) if verdict_match else None
     return {
         "answer_gt": gold_answer,
         "answer_pred": prediction,
         "answer_pred_extracted": extracted,
-        "correct": 1 if "A" in answer else 0,
+        "correct": 1 if verdict == "A" else 0,
         "judge_method": "llm_judge",
+        "judge_verdict": verdict,
         "judge_response": response,
     }
 

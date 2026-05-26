@@ -169,11 +169,11 @@ def compute_logicality_metrics(
     o_score = calculate_o_score(logical_nexuses, logical_nexus_weights, reasoning_sentences, M)
     p_score = calculate_p_score(logical_nexuses, reasoning_sentences, M)
     return {
-        'F_score': f_score,
-        'O_score': o_score,
-        'P_score': p_score,
-        'similarity_matrix': M.tolist(),
+        'F_score': float(f_score),
+        'O_score': float(o_score),
+        'P_score': float(p_score),
+        'similarity_matrix': M.astype(float).tolist(),
         'reasoning_sentences': reasoning_sentences,
-        'recall': recall,
-        'precision': precision,
+        'recall': float(recall),
+        'precision': float(precision),
     }
